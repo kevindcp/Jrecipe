@@ -2,10 +2,11 @@ const { response } = require("express")
 
 let Recipes = [{
     id: 1,
-    name: "adsds", 
-    user: "dijadsio",
+    name: "Chicken Parmesan", 
+    user: "testuser1",
 }]
 
+// only for initial test purposes
 let id = 2
 
 const getRecipes = async (req, res) => {
