@@ -1,0 +1,36 @@
+{
+  "name": "jrecipe",
+  "private": "true",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "workspaces": [
+    "api",
+    "front"
+  ],
+  "engines": {
+    "node": "14.15.3",
+    "npm" :"8.9.0"
+  },
+  "scripts": {
+    "build": "npm run build --workspace=front",
+    "start": "npx prisma generate --schema=./api/prisma/schema.prisma && npm run start --workspace=api"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kevindcp/jrecipe.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kevindcp/jrecipe/issues"
+  },
+  "homepage": "https://github.com/kevindcp/jrecipe#readme",
+  "dependencies": {
+    "@emotion/react": "^11.10.0",
+    "@emotion/styled": "^11.10.0",
+    "framer-motion": "^3.10.6",
+    "node-mailjet": "^5.1.1"
+  }
+}
