@@ -1,4 +1,3 @@
-
 import {
     Box,
     List,
@@ -8,7 +7,6 @@ import {
     HStack,
     Text,
     Badge,
-    Image,
     Button,
 } from '@chakra-ui/react';
 import { 
@@ -46,7 +44,7 @@ const Recipe : FC <RecipeContent> = ({title, cookTime, prepTime, ingredients, st
             spacing = '1vh'
             h = '100%'
         >
-            <Box w = '60vw'>
+            <Box w = '80vw'>
                 <Text textAlign='left' fontSize= {['30px', '35px', '40px', '45px', '45px']} fontWeight='400'>
                     {title}
                     <Badge ml='2'>
@@ -69,24 +67,24 @@ const Recipe : FC <RecipeContent> = ({title, cookTime, prepTime, ingredients, st
                     _focus = {{outline:'none', boxShadow:'none'}}
                 />
             </Box>
-            <Box w = '60vw'>
+            <Box w = '80vw'>
                 <Text textAlign='left' fontSize='1.5em' fontWeight='400'> Cooking Time </Text>
             </Box>
-            <HStack w = '60vw' spacing='1vw'>
-                <Box w='30vw' top='1'>
+            <HStack w = '80vw' spacing='1vw'>
+                <Box w='40vw' top='1'>
                     <Text fontSize='0.8em' fontWeight='400'>Prep Time:</Text>
                     <Text fontSize='1.2em' fontWeight='400'>{prepTime} min</Text>
                 </Box>
-                <Box w='30vw'>
+                <Box w='40vw'>
                     <Text fontSize='0.8em' fontWeight='400'>Cook Time:</Text>
                     <Text fontSize='1.2em' fontWeight='400' >{cookTime} min</Text>
                 </Box>
-                <Box w='30vw'>
+                <Box w='40vw'>
                     <Text fontSize='0.8em' fontWeight='400'>Total Time:</Text>
                     <Text fontSize='1.2em' fontWeight='400' >{cookTime + prepTime} min</Text>
                 </Box>
             </HStack>
-            <Box w='60vw'>
+            <Box w='80vw'>
                 <Text fontSize='1.5em' fontWeight='400' > Ingredients </Text>
                 <List fontSize='1.2em' fontWeight='300'>
                     {ingredientList.map( (ingredient, index )=> {
@@ -99,7 +97,7 @@ const Recipe : FC <RecipeContent> = ({title, cookTime, prepTime, ingredients, st
                     })}
                 </List>
             </Box>
-            <Box w = '60vw'>
+            <Box w = '80vw'>
                 <Text fontSize='1.5em' fontWeight='400' > Steps </Text>
                 <List fontSize='1.2em' fontWeight='300'>
                     {stepsList.map( (step, index )=> {

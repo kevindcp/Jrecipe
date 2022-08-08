@@ -8,7 +8,7 @@ const RecipePage = () => {
   const { recipes } = useAppSelector((state => state.recipes))
   const { id } = useParams()
   return (
-    <Flex justify='center' h='auto' w='100%' align='center' mt='10vh' pb='10vh' zIndex='0' flexDirection='row'>
+    <Flex justify='center' h='auto' w='100%' align='left' mt='10vh' pb='10vh' zIndex='0' flexDirection='row'>
         <Recipe {...recipes[Number(id)-1]} category={categories[recipes[Number(id)-1].categoryId - 1].name}/>
     </Flex>
   )
