@@ -43,11 +43,13 @@ export const register = async(req: Request, res: Response) => {
 export const login = async(req: Request, res: Response)=>{
     try{
         const {email, password} = req.body
+        console.log(email, password)
         const user = await prisma.user.findUnique({
             where : {
                 email
             },
         })
+        console.log(user)
         const passwordIsCorrect = user === null ? false: await bcrypt.compare(password, user.passwordHash)
         if (!user || !passwordIsCorrect) return res.status(400).json('invalid user or password')
         const tokenContent = {
