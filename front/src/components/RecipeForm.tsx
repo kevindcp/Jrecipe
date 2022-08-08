@@ -157,7 +157,7 @@ const RecipeForm: FC = () => {
                 <Input type='file' id='file' hidden accept='image/*' {...register('image')} onChange={handleImageChange}/>
                 <Box alignSelf='center'>
                     <label htmlFor='file'>
-                        <Image src={picture} maxW='300px' w='auto' h='auto' maxH='300px' fallbackSrc={'../assets/images/defaultImage.png'} cursor='pointer' rounded='10' />
+                        <Image src={picture} maxW='300px' w='auto' h='auto' maxH='300px' fallbackSrc={'../front/assets/images/defaultImage.png'} cursor='pointer' rounded='10' />
                     </label>
                 </Box>
                 <FormErrorMessage>{errors?.image?.message}</FormErrorMessage>
