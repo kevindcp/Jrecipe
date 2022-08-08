@@ -12,7 +12,7 @@ import {
 import { FC} from 'react'
 import { MenuProps } from '../types/menu'
 import { useColorMode } from '@chakra-ui/color-mode'
-import { BiSearchAlt2 } from 'react-icons/bi'
+import { BiSearchAlt2, BiCategory } from 'react-icons/bi'
 import { FiLogOut } from 'react-icons/fi'
 import { FaRandom, FaHome } from 'react-icons/fa'
 import { VscAdd } from 'react-icons/vsc'
@@ -32,6 +32,11 @@ const Menu: FC <MenuProps> = ({ isOpen, onClose }) => {
   const handleRandom = () => {
     const randId = random(recipes.length, 1)
     history(`/recipes/${randId}`)
+    onClose()
+  }
+
+  const handleCategories = () => {
+    history('/categories')
     onClose()
   }
 
@@ -90,6 +95,18 @@ const Menu: FC <MenuProps> = ({ isOpen, onClose }) => {
                 mt = '2' mb = '2'  
                 text = 'Search' 
             />
+            {recipes.length > 0 && <Button
+              w='100%' h='5vh' 
+              justifyContent='left' 
+              fontSize='1.3em' 
+              leftIcon={<BiCategory style={{marginRight:40}}/>}
+              backgroundColor= {colorMode === 'light'? 'white':'gray.700'}
+              mt='2' mb='2'
+              _focus={{outline:'none', boxShadow:'none'}}
+              onClick={handleCategories}
+            >
+              Categories
+            </Button>}
             {recipes.length > 0 && <Button
               w='100%' h='5vh' 
               justifyContent='left' 

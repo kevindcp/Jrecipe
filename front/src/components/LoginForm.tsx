@@ -25,11 +25,13 @@ const LoginForm: FC = () => {
         mode: 'onBlur',
     })
     const [isLoading, setIsLoading] = useState(false)
+    const [error, setError] = useState("")
     const onSubmit = async (values: LoginFormInputs) => {
+        setError("")
         setIsLoading(true)
         const tokenLog = await loginUser(values)
         if (typeof tokenLog === "object") {
-            console.log(tokenLog.data)   
+            setError(tokenLog.data)   
             setIsLoading(false)
         } else {
             dispatch(set(tokenLog))
@@ -63,6 +65,11 @@ const LoginForm: FC = () => {
                     {errors?.password?.message}
                 </FormErrorMessage>
             </FormControl>
+            { error !== "" ? 
+            <Text ml = '3' color='red'>
+                {error}
+            </Text> : <></>
+            }
             <Button 
                 onClick={handleSubmit(onSubmit)}
                 w = '94%'

@@ -12,17 +12,14 @@ import {
     NumberIncrementStepper,
     NumberDecrementStepper,
     HStack,
-    Image,
-    Box,
-    Text,
     FormHelperText,
 } from '@chakra-ui/react';
 import { RecipeFormInputs } from '../types/forms';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { validationRecipe } from '../validators/forms';
-import { FC, useState, ChangeEvent, useEffect } from 'react';
-import { publishRecipe, uploadImage } from '../services/Recipes';
+import { FC, useState } from 'react';
+import { publishRecipe } from '../services/Recipes';
 import { useAppDispatch, useAppSelector } from '../hooks/redux';
 import { add } from '../redux/recipes';
 import { useNavigate } from 'react-router-dom'
@@ -39,37 +36,14 @@ const RecipeForm: FC = () => {
     const { token } = useAppSelector(state=>state.user) 
     const onSubmit = async (values: RecipeFormInputs) => {
         setIsLoading(true)
-        if (values.image[0]) {
-            if (values.image[0].type=== 'image/jpeg' || values.image[0].type === 'image/png'){
-                const imgur = await uploadImage(values.image[0])
-                const request = {...values, category: categories[values.category].id ,image: imgur}
-                const response = await publishRecipe(request, token)
-                const recipe = {...response, category: categories[response.categoryId - 1].name}
-                dispatch(add(recipe))
-                history('/')
-            } else (
-                console.log('bad format') //placeholder
-            )
-        } else {
-            const imgur = ''
-            const request = {...values, category: categories[values.category].id ,image: imgur}
-            const response = await publishRecipe(request, token)
-            const recipe = {...response, category: categories[response.categoryId - 1].name}
-            dispatch(add(recipe))
-            history('/')
-        }
+        const request = {...values, category: categories[values.category].id}
+        const response = await publishRecipe(request, token)
+        const recipe = {...response, category: categories[response.categoryId - 1].name}
+        dispatch(add(recipe))
+        history('/')
         setIsLoading(false)
     }
-    const [picture, setPicture] = useState('')
-    const handleImageChange = (event: ChangeEvent<HTMLInputElement>) => {
-        if (!event || !event.target.files){
-            return
-        }
-        const imageFile: File = event.target.files[0]
-        const imageURL: string = URL.createObjectURL(imageFile)
-        setPicture(imageURL)
-    }
-
+    
     return (
         <FormControl 
             w = '100%'
@@ -149,20 +123,6 @@ const RecipeForm: FC = () => {
                 <FormErrorMessage>{errors?.steps?.message}</FormErrorMessage>
                 <FormHelperText>Every step must end on a line break.</FormHelperText>
             </FormControl>
-            <FormControl
-                isInvalid = {!!errors?.image?.message}
-                p = '2'
-            >
-                <FormLabel>Picture</FormLabel>
-                <Input type='file' id='file' hidden accept='image/*' {...register('image')} onChange={handleImageChange}/>
-                <Box alignSelf='center'>
-                    <label htmlFor='file'>
-                        <Image src={picture} maxW='300px' w='auto' h='auto' maxH='300px' fallbackSrc={'../front/assets/images/defaultImage.png'} cursor='pointer' rounded='10' />
-                    </label>
-                </Box>
-                <FormErrorMessage>{errors?.image?.message}</FormErrorMessage>
-                <FormHelperText>Upload a picture of your recipe.</FormHelperText>
-            </FormControl> 
             <Button 
                 onClick={handleSubmit(onSubmit)}
                 w = '96%'

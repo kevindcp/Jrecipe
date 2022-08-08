@@ -1,23 +1,5 @@
 import axios from 'axios'
 import { RecipeFormRequest } from '../types/forms'
-import { useAppSelector } from '../hooks/redux'
-
-
-// This does not work on localhost
-export const uploadImage = async(image:any) => {
-    const data = new FormData()
-    data.append("image", image)
-    try {
-        const response = await axios.post('https://api.imgur.com/3/image', data, {
-            headers: {
-                Authorization : "Client-ID a7c2fdc2aedce88"
-            },
-        })
-        return response.data.data.link
-    } catch (err) {
-        return err.response.data
-    }
-}
 
 export const getRecipes = async (token:string) => {
     try {

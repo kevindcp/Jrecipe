@@ -24,7 +24,7 @@ import CustomModal from './Modal';
 import EditRecipeForm from './EditRecipeForm';
 import { deleteRecipe } from '../services/Recipes';
 
-const Recipe : FC <RecipeContent> = ({title, cookTime, prepTime, ingredients, steps, category, image}) => {
+const Recipe : FC <RecipeContent> = ({title, cookTime, prepTime, ingredients, steps, category}) => {
     const ingredientList = ingredients.split('\n')
     const { colorMode } = useColorMode()
     const [isAlertOpen, setIsAlertOpen] = useState(false)
@@ -67,15 +67,6 @@ const Recipe : FC <RecipeContent> = ({title, cookTime, prepTime, ingredients, st
                     w='1vw'
                     backgroundColor= {colorMode === 'light'? 'white':'gray.800'} 
                     _focus = {{outline:'none', boxShadow:'none'}}
-                />
-            </Box>
-            <Box w = '60vw'>
-                <Image 
-                    src = {image} 
-                    fallbackSrc= {'../assets/images/defaultImage.png'} 
-                    w='100%' h='auto' 
-                    maxH= '68vh'
-                    borderRadius='10px'
                 />
             </Box>
             <Box w = '60vw'>

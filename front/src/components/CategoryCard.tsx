@@ -4,11 +4,13 @@ import {
     LinkOverlay,
     LinkBox,
 } from '@chakra-ui/react';
+import { useNavigate } from 'react-router-dom';
 
 const CategoryCard = ({name, image, link}) =>{
+    const history= useNavigate()
     return (
             <LinkBox h='auto' borderWidth='1px' rounded='md'>
-                <LinkOverlay href={link} h='auto'>
+                <LinkOverlay onClick = {() => history(link)} cursor='pointer'>
                     <Image 
                         src={image} 
                         fallbackSrc={'../assets/images/defaultImage.png'} 

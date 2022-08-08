@@ -21,7 +21,6 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { validationRecipe } from '../validators/forms';
 import { FC, useState, ChangeEvent } from 'react';
-import { uploadImage } from '../services/Recipes';
 import { useAppDispatch, useAppSelector } from '../hooks/redux';
 import { update } from '../redux/recipes';
 import { useParams } from 'react-router-dom'
@@ -42,27 +41,10 @@ const EditRecipeForm: FC = () => {
     const [isLoading, setIsLoading] = useState(false)
     const onSubmit = async (values: RecipeFormInputs) => {
         setIsLoading(true)
-        if (values.image[0]) {
-            if (values.image[0].type=== 'image/jpeg' || values.image[0].type === 'image/png'){
-                try{
-                    const imgur = await uploadImage(values.image[0])
-                    const request = {...values, category: categories[values.category].id, image: imgur}
-                    
-                    const response = await updateRecipe( request, token, recipes[Number(id)-1].id)
-                    const recipe = {...response, category: categories[response.categoryId - 1].name}
-                    dispatch(update({index:Number(id)-1 ,content:recipe}))
-                } catch (err) {
-                    console.log(err)
-                }
-            } else (
-                console.log('bad format') 
-            )
-        } else {
-            const request = {...values, category: categories[values.category].id, image: recipes[Number(id)-1].image}
-            const response = await updateRecipe( request, token, recipes[Number(id)-1].id)
-            const recipe = {...response, category: categories[response.categoryId - 1].name}
-            dispatch(update({index:Number(id)-1 ,content:recipe}))
-        }
+        const request = {...values, category: categories[values.category].id}
+        const response = await updateRecipe( request, token, recipes[Number(id)-1].id)
+        const recipe = {...response, category: categories[response.categoryId - 1].name}
+        dispatch(update({index:Number(id)-1 ,content:recipe}))
         setIsLoading(false)
     }
                 

@@ -17,7 +17,6 @@ export type RecipeFormInputs = {
     cookTime: number,
     ingredients: string,
     steps: string,
-    image: File,
 }
 
 export type RecipeFormRequest = {
@@ -27,5 +26,4 @@ export type RecipeFormRequest = {
     cookTime: number,
     ingredients: string,
     steps: string,
-    image: string,
 }

@@ -10,6 +10,7 @@ import { useAppSelector } from "../hooks/redux";
 import SearchPage from "../pages/Search ";
 import RecipeFormPage from "../pages/RecipeForm";
 import NonLoggedHeader from "../components/NonLoggedHeader";
+import CategoriesPage from "../pages/Categories";
 
 const Router: FC  = () => {
     const { token }  = useAppSelector((state) => state.user)
@@ -57,10 +58,17 @@ const Router: FC  = () => {
                     </>
                     : <Navigate replace to='/login'/>
                 } /> 
+                <Route path='/categories' element={ token ?
+                    <>
+                        <Header />
+                        <CategoriesPage/>
+                    </>
+                    : <Navigate replace to='/login'/>
+                } />
                 <Route path='/categories/:id' element={ token ?
                     <>
                         <Header />
-                        <CategoryPage/>
+                        <RecipesPage />
                     </>
                     : <Navigate replace to='/login'/>
                 } />

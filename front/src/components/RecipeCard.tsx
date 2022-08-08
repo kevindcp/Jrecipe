@@ -10,13 +10,12 @@ import { FC } from 'react';
 import { RecipeCardContent } from '../types/recipes';
 import { useNavigate } from 'react-router-dom'
 
-const RecipeCard: FC<RecipeCardContent> = ({title, cookTime, prepTime, category, image, link}) =>{
+const RecipeCard: FC<RecipeCardContent> = ({title, cookTime, prepTime, category, link, image}) =>{
     const history= useNavigate()
     return (
         <LinkBox p='1' borderWidth='3px' rounded='md' h='auto'>
             <Image 
-                src={'https://www.estontorise.com/wp-content/uploads/2018/01/Chicken-Dishes.jpg'} 
-                fallbackSrc={'https://www.estontorise.com/wp-content/uploads/2018/01/Chicken-Dishes.jpg'} 
+                src={image} 
                 w='100%' h='25vh' 
                 maxH='300px'
                 rounded='md'

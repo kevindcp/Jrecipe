@@ -12,6 +12,12 @@ import cors from "cors"
 dotenv.config({ path: __dirname+'/.env'})
 const app = express()
 app.use(express.json())
+app.use(helmet.contentSecurityPolicy({
+  useDefaults: true,
+  directives: {
+    "img-src": ["'self'", "https: data:"]
+  }
+}))
 app.use(cors())
 
 const PORT = process.env.PORT
