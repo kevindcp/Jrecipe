@@ -14,13 +14,6 @@ const RecipeCard: FC<RecipeCardContent> = ({title, cookTime, prepTime, category,
     const history= useNavigate()
     return (
         <LinkBox p='1' borderWidth='3px' rounded='md' h='auto'>
-            <Image 
-                src={image} 
-                fallbackSrc={'../assets/images/defaultImage.png'} 
-                w='100%' h='25vh' 
-                maxH='300px'
-                rounded='md'
-            />
             <Heading size='1.5em' my='2'>
                 <LinkOverlay onClick = {() => history(link)} cursor='pointer' >
                     {title}
