@@ -47,16 +47,6 @@ const EditRecipeForm: FC = () => {
         dispatch(update({index:Number(id)-1 ,content:recipe}))
         setIsLoading(false)
     }
-                
-    const [picture, setPicture] = useState(recipe.image)
-    const handleImageChange = (event: ChangeEvent<HTMLInputElement>) => {
-        if (!event || !event.target.files){
-            return
-        }
-        const imageFile: File = event.target.files[0]
-        const imageURL: string = URL.createObjectURL(imageFile)
-        setPicture(imageURL)
-    }
 
     return (
         <FormControl 
@@ -138,19 +128,12 @@ const EditRecipeForm: FC = () => {
                 <FormHelperText>Every step must end on a line break.</FormHelperText>
             </FormControl> 
             <FormControl
-                isInvalid = {!!errors?.image?.message}
                 p = '2'
             >
-                <FormLabel>Picture</FormLabel>
-                <Input type='file' id='file' hidden accept='image/*' {...register('image')} onChange={handleImageChange}/>
-                <Box alignSelf='center'>
-                    <label htmlFor='file'>
-                        <Image src={picture} maxW='300px' w='auto' h='auto' maxH='300px' fallbackSrc={'../assets/images/defaultImage.png'} cursor='pointer' rounded='10'/>
-                    </label>
-                </Box>
-                <FormErrorMessage>{errors?.image?.message}</FormErrorMessage>
-                <FormHelperText>Upload a picture of your recipe.</FormHelperText>
-            </FormControl> 
+                <FormLabel>Image</FormLabel>
+                <Input type='Text' placeholder='Image' {...register('image')}  defaultValue={recipe.image}/>
+                <FormHelperText>Link to your uploaded image. You can upload your image using <a href='https://imgur.com/upload' color='blue' target={'_blank'}>Imgur</a>, right click the image and select 'Copy image link' to obtain your uploaded image URL.</FormHelperText>
+            </FormControl>
             <Button 
                 onClick={handleSubmit(onSubmit)}
                 w = '96%'

@@ -123,6 +123,13 @@ const RecipeForm: FC = () => {
                 <FormErrorMessage>{errors?.steps?.message}</FormErrorMessage>
                 <FormHelperText>Every step must end on a line break.</FormHelperText>
             </FormControl>
+            <FormControl
+                p = '2'
+            >
+                <FormLabel>Image</FormLabel>
+                <Input type='Text' placeholder='Image' {...register('image')}/>
+                <FormHelperText>Link to your uploaded image. You can upload your image using <a href='https://imgur.com/upload' color='blue' target={'_blank'}>Imgur</a>, right click the image and select 'Copy image link' to obtain your uploaded image URL.</FormHelperText>
+            </FormControl>
             <Button 
                 onClick={handleSubmit(onSubmit)}
                 w = '96%'
