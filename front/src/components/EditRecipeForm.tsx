@@ -132,7 +132,7 @@ const EditRecipeForm: FC = () => {
             >
                 <FormLabel>Image</FormLabel>
                 <Input type='Text' placeholder='Image' {...register('image')}  defaultValue={recipe.image}/>
-                <FormHelperText>Link to your uploaded image. You can upload your image using <a href='https://imgur.com/upload' color='blue' target={'_blank'}>Imgur</a>, right click the image and select 'Copy image link' to obtain your uploaded image URL.</FormHelperText>
+                <FormHelperText>Link to your uploaded image. You can upload your image using <a href='https://postimages.org/' color='blue' target={'_blank'}>Postimages</a>, and copy the direct link to obtain your uploaded image URL.</FormHelperText>
             </FormControl>
             <Button 
                 onClick={handleSubmit(onSubmit)}
