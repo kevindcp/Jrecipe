@@ -21,7 +21,7 @@ export const uploadImage = async(image:any) => {
 
 export const getRecipes = async (token:string) => {
     try {
-        const response = await axios.get('http://localhost:5000/api/v1/users/me/recipes', {
+        const response = await axios.get('/api/v1/users/me/recipes', {
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -34,7 +34,7 @@ export const getRecipes = async (token:string) => {
 
 export const publishRecipe = async(recipe: RecipeFormRequest, token:string) =>{
     try{
-        const response =  await axios.post('http://localhost:5000/api/v1/recipes', recipe, {
+        const response =  await axios.post('/api/v1/recipes', recipe, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -47,7 +47,7 @@ export const publishRecipe = async(recipe: RecipeFormRequest, token:string) =>{
 
 export const deleteRecipe = async(token: string, id:number) => {
     try {
-        const response = await axios.delete(`http://localhost:5000/api/v1/recipes/${id}`, {
+        const response = await axios.delete(`/api/v1/recipes/${id}`, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -60,7 +60,7 @@ export const deleteRecipe = async(token: string, id:number) => {
 
 export const updateRecipe = async(recipe: RecipeFormRequest, token: string, id:number) => {
     try {
-        const response = await axios.patch(`http://localhost:5000/api/v1/recipes/${id}`, recipe, {
+        const response = await axios.patch(`/api/v1/recipes/${id}`, recipe, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
