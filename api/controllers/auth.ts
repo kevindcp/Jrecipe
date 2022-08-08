@@ -10,7 +10,6 @@ const prisma = new PrismaClient()
 export const register = async(req: Request, res: Response) => {
     try {
         const {name, email, password} = req.body
-        console.log(name, email, password)
         if (!name||!email||!password) return res.status(400).json('Invalid request')
         const user = await prisma.user.findUnique({
             where: {
@@ -20,7 +19,7 @@ export const register = async(req: Request, res: Response) => {
         if (user) return res.status(400).json('A user with this email is already registered')
         const passwordHash = await bcrypt.hash(password, 10)
         const role = await prisma.user.count() === 0 ? 'ADMIN' : 'USER'
-        const createdUser = await prisma.user.create({ 
+        await prisma.user.create({ 
             data: {
                 name, 
                 email,
@@ -33,7 +32,7 @@ export const register = async(req: Request, res: Response) => {
                 }
             }
         })
-        console.log(createdUser)
+        console.log('here')
         res.status(200).json('Created user successfuly')  
     } catch(err){
         res.status(400).json({
@@ -45,13 +44,11 @@ export const register = async(req: Request, res: Response) => {
 export const login = async(req: Request, res: Response)=>{
     try{
         const {email, password} = req.body
-        console.log(email, password)
         const user = await prisma.user.findUnique({
             where : {
                 email
             },
         })
-        console.log(user)
         const passwordIsCorrect = user === null ? false: await bcrypt.compare(password, user.passwordHash)
         if (!user || !passwordIsCorrect) return res.status(400).json('invalid user or password')
         const tokenContent = {
@@ -61,6 +58,7 @@ export const login = async(req: Request, res: Response)=>{
         const jwtToken = jwt.sign(tokenContent, process.env.JWT_SECRET as string, {
             expiresIn: process.env.JWT_EXPIRATION_TIME
         })
+        console.log('here')
         res.status(200).json(jwtToken)
     } catch(err){
         res.status(400).json({
