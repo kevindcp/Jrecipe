@@ -68,7 +68,7 @@ const Router: FC  = () => {
                 <Route path='/categories/:id' element={ token ?
                     <>
                         <Header />
-                        <RecipesPage />
+                        <CategoryPage />
                     </>
                     : <Navigate replace to='/login'/>
                 } />
