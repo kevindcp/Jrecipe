@@ -32,7 +32,6 @@ export const register = async(req: Request, res: Response) => {
                 }
             }
         })
-        console.log('here')
         res.status(200).json('Created user successfuly')  
     } catch(err){
         res.status(400).json({
@@ -58,7 +57,6 @@ export const login = async(req: Request, res: Response)=>{
         const jwtToken = jwt.sign(tokenContent, process.env.JWT_SECRET as string, {
             expiresIn: process.env.JWT_EXPIRATION_TIME
         })
-        console.log('here')
         res.status(200).json(jwtToken)
     } catch(err){
         res.status(400).json({
