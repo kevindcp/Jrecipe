@@ -10,6 +10,7 @@ const prisma = new PrismaClient()
 export const register = async(req: Request, res: Response) => {
     try {
         const {name, email, password} = req.body
+        console.log(name, email, password)
         if (!name||!email||!password) return res.status(400).json('Invalid request')
         const user = await prisma.user.findUnique({
             where: {
@@ -19,7 +20,7 @@ export const register = async(req: Request, res: Response) => {
         if (user) return res.status(400).json('A user with this email is already registered')
         const passwordHash = await bcrypt.hash(password, 10)
         const role = await prisma.user.count() === 0 ? 'ADMIN' : 'USER'
-        await prisma.user.create({ 
+        const createdUser = await prisma.user.create({ 
             data: {
                 name, 
                 email,
@@ -32,6 +33,7 @@ export const register = async(req: Request, res: Response) => {
                 }
             }
         })
+        console.log(createdUser)
         res.status(200).json('Created user successfuly')  
     } catch(err){
         res.status(400).json({
