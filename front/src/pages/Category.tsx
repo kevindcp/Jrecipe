@@ -34,7 +34,7 @@ const CategoryPage = () => {
         {filteredRecipes.map((recipe, index) => {
           return (<RecipeCard key={recipe.id} {...recipe} category={categories[recipe.categoryId - 1].name} link={`/recipes/${index + 1}`}/>)
         })}
-      </Grid> :<VStack> <Text w='100%' fontSize='2vw'> You have no recipes in this category yet :( </Text> <Link w='100%' fontSize='1.8vw' fontWeight='600' onClick={()=> history('/recipes/add')}>Click here to create one</Link></VStack>}
+      </Grid> :<VStack> <Text w='100%' fontSize='3.2vh'> You have no recipes in this category yet :( </Text> <Link w='100%' fontSize='2.5vh' fontWeight='600' onClick={()=> history('/recipes/add')}>Click here to create one</Link></VStack>}
     </Flex>
   )
 }

@@ -13,7 +13,7 @@ const SectionHeader: FC<SectionContent> = ({name}) =>{
                     alignSelf='left'
                     justifySelf= 'left'
                     mt='7vh' mb='5vh'
-                    fontSize='3em' 
+                    fontSize='4vh' 
                     border = '1px black'
                     w = '83vw' 
                 >
