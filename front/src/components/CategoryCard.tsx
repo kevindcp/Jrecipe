@@ -14,11 +14,8 @@ const CategoryCard = ({name, image, link}) =>{
                     <Image 
                         src={image} 
                         fallbackSrc={'../assets/images/defaultImage.png'} 
-                        w='100%' h='20vh' 
-                        top='10%' 
+                        w='100%' h='25vh' 
                         rounded='md' 
-                        filter='blur(1.5px)'
-                        border ='2px'
                     />
                 </LinkOverlay>
                 <Text 
@@ -28,7 +25,8 @@ const CategoryCard = ({name, image, link}) =>{
                         align='center' 
                         color='white' 
                         fontWeight='800' 
-                        textShadow='3px 3px black'
+                        backgroundColor='black'
+                        textShadow='2px 3px black'
                         h='0'
                 >
                         {name}
