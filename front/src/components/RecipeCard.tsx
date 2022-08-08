@@ -16,7 +16,7 @@ const RecipeCard: FC<RecipeCardContent> = ({title, cookTime, prepTime, category,
         <LinkBox p='1' borderWidth='3px' rounded='md' h='auto'>
             <Image 
                 src={image} 
-                fallbackSrc={'../front/assets/images/defaultImage.png'} 
+                fallbackSrc={'https://th.bing.com/th/id/OIP.fmZmfnpyXOpq_Ir4ofnWUQHaHa?pid=ImgDet&rs=1'} 
                 w='100%' h='25vh' 
                 maxH='300px'
                 rounded='md'
