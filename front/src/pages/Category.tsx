@@ -30,7 +30,7 @@ const CategoryPage = () => {
     <Flex justify='center' h='auto' w='100%' align='left' pl='10vw' pt='5vh' pb='3vh' zIndex='0' flexDirection='column'>
       <SectionHeader name='Recipes'/>
       {recipes.length > 0 ? <Grid columnGap='20px' rowGap='20px' gridAutoFlow='row' templateColumns='repeat(auto-fill, minmax(max(300px, 20%), 1fr))' h='100%' w='90%' justifyContent='center'>
-        {recipes.map((recipe, index) => {
+        {recipes.filter(recipe => recipe.categoryId === parseInt(id)).map((recipe, index) => {
           return (<RecipeCard key={recipe.id} {...recipe} category={categories[recipe.categoryId - 1].name} link={`/recipes/${index + 1}`}/>)
         })}
       </Grid> :<VStack> <Text w='100%' fontSize='2em'> You have no recipes yet :( </Text> <Link w='100%' fontSize='1.8em' fontWeight='600' onClick={()=> history('/recipes/add')}>Click here to create one</Link></VStack>}
