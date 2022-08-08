@@ -15,8 +15,8 @@ const RecipeCard: FC<RecipeCardContent> = ({title, cookTime, prepTime, category,
     return (
         <LinkBox p='1' borderWidth='3px' rounded='md' h='auto'>
             <Image 
-                src={'https://th.bing.com/th/id/OIP.fmZmfnpyXOpq_Ir4ofnWUQHaHa?pid=ImgDet&rs=1'} 
-                fallbackSrc={'https://th.bing.com/th/id/OIP.fmZmfnpyXOpq_Ir4ofnWUQHaHa?pid=ImgDet&rs=1'} 
+                src={'https://www.estontorise.com/wp-content/uploads/2018/01/Chicken-Dishes.jpg'} 
+                fallbackSrc={'https://www.estontorise.com/wp-content/uploads/2018/01/Chicken-Dishes.jpg'} 
                 w='100%' h='25vh' 
                 maxH='300px'
                 rounded='md'
