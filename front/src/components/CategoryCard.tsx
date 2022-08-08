@@ -17,8 +17,7 @@ const CategoryCard = ({name, image, link}) =>{
                         w='100%' h='25vh' 
                         rounded='md' 
                     />
-                </LinkOverlay>
-                <Text 
+                     <Text 
                         position='relative' 
                         fontSize='2em' 
                         top='-55%' 
@@ -28,9 +27,10 @@ const CategoryCard = ({name, image, link}) =>{
                         backgroundColor='black'
                         textShadow='2px 3px black'
                         h='0'
-                >
-                        {name}
-                </Text>
+                    >
+                            {name}
+                    </Text>
+                </LinkOverlay>
             </LinkBox>
     )
 }
