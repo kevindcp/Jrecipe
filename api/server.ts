@@ -40,7 +40,7 @@ app.use('/api/v1/recipes', recipeRouter)
 
 app.use('/api/v1/categories', categoryRouter)
 
-app.use(express.static('../front/dist'))
+app.get('/*',  express.static('../front/dist'))
 
 app.listen(PORT, () => {
   console.log(`Server running in port ${PORT}`)
