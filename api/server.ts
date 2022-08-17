@@ -9,6 +9,7 @@ import * as swaggerUi from "swagger-ui-express"
 import swaggerOptions from "./utils/swaggerConfig"
 import cors from "cors"
 import { Response, Request } from "express"
+import path from "path"
 
 dotenv.config({ path: __dirname+'/.env'})
 const app = express()
@@ -44,7 +45,7 @@ app.use('/api/v1/categories', categoryRouter)
 app.use(express.static('../front/dist'))
 
 app.get('*', (req: Request, res: Response)=>{
-  res.sendFile('../front/dist/index.html')
+  res.sendFile(path.resolve('../front/dist/index.html'))
 })
 
 app.listen(PORT, () => {
