@@ -41,7 +41,7 @@ export const AddRecipeModal: FC = () => {
   )
 }
 
-export const SearchModal: FC = () => {
+export const SearchModal: FC <any> = ({onCloseMenu}) => {
 const { isOpen, onClose, onOpen } = useDisclosure()
 const { colorMode } = useColorMode()
 return (
@@ -57,7 +57,7 @@ return (
         <ModalHeader hidden={true} />
         <ModalCloseButton hidden={true} />
         <ModalBody w='auto' >
-            <Searchbar onClose={onClose}/>
+            <Searchbar onClose={onCloseMenu}/>
         </ModalBody>
       </ModalContent>
     </Modal>

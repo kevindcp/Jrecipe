@@ -69,7 +69,7 @@ return (
             Home
           </Button>
           <AddRecipeModal/>
-          <SearchModal/>
+          <SearchModal onCloseMenu={onClose}/>
           {recipes.length > 0 && <Button
             w='100%' h='5vh' 
             justifyContent='left' 
