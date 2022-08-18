@@ -12,22 +12,20 @@ import {
     NumberIncrementStepper,
     NumberDecrementStepper,
     HStack,
-    Image,
-    Box,
     FormHelperText,
 } from '@chakra-ui/react';
 import { RecipeFormInputs } from '../types/forms';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { validationRecipe } from '../validators/forms';
-import { FC, useState, ChangeEvent } from 'react';
+import { FC, useState} from 'react';
 import { useAppDispatch, useAppSelector } from '../hooks/redux';
 import { update } from '../redux/recipes';
 import { useParams } from 'react-router-dom'
 import { RecipeContent } from '../types/recipes';
 import { updateRecipe } from '../services/Recipes';
 
-const EditRecipeForm: FC = () => {
+const EditRecipeForm: FC <any> = ({onClose}) => {
     const dispatch = useAppDispatch()
     const { recipes } = useAppSelector(state => state.recipes)
     const { categories } = useAppSelector(state => state.categories)
@@ -46,6 +44,7 @@ const EditRecipeForm: FC = () => {
         const recipe = {...response, category: categories[response.categoryId - 1].name}
         dispatch(update({index:Number(id)-1 ,content:recipe}))
         setIsLoading(false)
+        onClose()
     }
 
     return (

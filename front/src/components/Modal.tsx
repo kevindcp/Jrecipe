@@ -1,35 +1,90 @@
 import { 
-    Modal,
-    ModalBody,
-    ModalOverlay,
-    ModalContent,
-    ModalHeader,
-    ModalCloseButton,
-    useDisclosure,
-    Button
+  Modal,
+  ModalBody,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalCloseButton,
+  useDisclosure,
+  Button
 } from "@chakra-ui/react"
-import { FC, useEffect } from "react"
+import { FC} from "react"
+import { useColorMode } from "@chakra-ui/react"
+import { BiSearchAlt2 } from "react-icons/bi"
+import Searchbar from "./SearchBar"
+import EditRecipeForm from "./EditRecipeForm"
+import { EditIcon } from "@chakra-ui/icons"
+import { VscAdd } from "react-icons/vsc"
+import RecipeForm from "./RecipeForm"
 
-const CustomModal: FC <any> = ({leftIcon, w, bc, focus, text, content, h, mt, mb, fontSize, justifyContent, header}) => {
-    const { isOpen, onClose, onOpen } = useDisclosure()
-    return (
-        <>
-        <Button w={w} leftIcon={leftIcon} backgroundColor={bc} _focus={focus} h={h} mt={mt} mb={mb} fontSize={fontSize} justifyContent={justifyContent} onClick={()=>onOpen()}>{text}</Button>
-        <Modal
-          isOpen={isOpen}
-          onClose={onClose}
-        >
-          <ModalOverlay />
-          <ModalContent>
-            <ModalHeader hidden={header?false:true}>{header}</ModalHeader>
-            <ModalCloseButton hidden={header?false:true} />
-            <ModalBody p={header?6:0} w='auto' >
-              {content}
-            </ModalBody>
-          </ModalContent>
-        </Modal>
-        </>
-    )
-  }
+export const AddRecipeModal: FC = () => {
+  const { isOpen, onClose, onOpen } = useDisclosure()
+  const { colorMode } = useColorMode()
+  return (
+      <>
+      <Button w='100%' leftIcon={<VscAdd style={{marginRight:40}}/>} backgroundColor={colorMode === 'light'? 'white':'gray.700'} 
+      _focus={{outline:'none', boxShadow:'none'}} h='5vh' mt='2' mb='2' fontSize='1.3em' justifyContent='left' onClick={()=>onOpen()}>Add Recipe</Button>
+      <Modal
+        isOpen={isOpen}
+        onClose={onClose}
+      >
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>Add Recipe</ModalHeader>
+          <ModalCloseButton/>
+          <ModalBody p={6} w='auto' >
+            <RecipeForm />
+          </ModalBody>
+        </ModalContent>
+      </Modal>
+      </>
+  )
+}
 
-export default CustomModal
+export const SearchModal: FC = () => {
+const { isOpen, onClose, onOpen } = useDisclosure()
+const { colorMode } = useColorMode()
+return (
+    <>
+    <Button w='100%' leftIcon={<BiSearchAlt2 style={{marginRight:40}}/>} backgroundColor={colorMode === 'light'? 'white':'gray.700'} _focus={{outline:'none', boxShadow:'none'}}
+      h='5vh' mt='2' mb='2' fontSize='1.3em' justifyContent='left' onClick={()=>onOpen()}>Search</Button>
+    <Modal
+      isOpen={isOpen}
+      onClose={onClose}
+    >
+      <ModalOverlay />
+      <ModalContent>
+        <ModalHeader hidden={true} />
+        <ModalCloseButton hidden={true} />
+        <ModalBody w='auto' >
+            <Searchbar onClose={onClose}/>
+        </ModalBody>
+      </ModalContent>
+    </Modal>
+    </>
+)
+}
+
+export const EditModal: FC = () => {
+const { isOpen, onClose, onOpen } = useDisclosure()
+const { colorMode } = useColorMode()
+return (
+    <>
+    <Button w='1vw' leftIcon={<EditIcon ml='2'/>}  backgroundColor={colorMode === 'light'? 'white':'gray.800'} 
+    _focus={{outline:'none', boxShadow:'none'}} onClick={()=>onOpen()}/>
+    <Modal
+      isOpen={isOpen}
+      onClose={onClose}
+    >
+      <ModalOverlay />
+      <ModalContent>
+        <ModalHeader>Edit Recipe</ModalHeader>
+        <ModalCloseButton />
+        <ModalBody p={6} w='auto' >
+          <EditRecipeForm onClose={onClose} />
+        </ModalBody>
+      </ModalContent>
+    </Modal>
+    </>
+)
+}

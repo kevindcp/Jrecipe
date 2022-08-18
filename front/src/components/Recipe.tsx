@@ -1,3 +1,4 @@
+
 import {
     Box,
     List,
@@ -7,10 +8,10 @@ import {
     HStack,
     Text,
     Badge,
-    Button,
+    Button
 } from '@chakra-ui/react';
 import { 
-    ChevronRightIcon, DeleteIcon, EditIcon
+    ChevronRightIcon, DeleteIcon
 } from '@chakra-ui/icons'
 import { FC, useState } from 'react';
 import { RecipeContent } from '../types/recipes';
@@ -18,8 +19,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { useAppSelector } from '../hooks/redux';
 import AlertPopup from './Alert';
 import { useColorMode } from '@chakra-ui/color-mode';
-import CustomModal from './Modal';
-import EditRecipeForm from './EditRecipeForm';
+import { EditModal } from './Modal';
 import { deleteRecipe } from '../services/Recipes';
 
 const Recipe : FC <RecipeContent> = ({title, cookTime, prepTime, ingredients, steps, category}) => {
@@ -51,14 +51,7 @@ const Recipe : FC <RecipeContent> = ({title, cookTime, prepTime, ingredients, st
                         {category}
                     </Badge>
                 </Text>
-                <CustomModal 
-                    leftIcon = {<EditIcon ml='2'/>}  
-                    w ='1vw' 
-                    bc={colorMode === 'light'? 'white':'gray.800'}  
-                    focus={{outline:'none', boxShadow:'none'}}
-                    content={<EditRecipeForm />}
-                    header= 'Edit Recipe'
-                />
+                <EditModal />
                 <Button 
                     leftIcon={<DeleteIcon ml='2'/>} 
                     onClick = {() => setIsAlertOpen(true)} 
