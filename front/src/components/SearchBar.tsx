@@ -29,7 +29,7 @@ const Searchbar: FC <any> = ({ onClose }) => {
     return(
         <InputGroup>
             <InputRightElement
-                children={<Button onClick={handleClick} borderRadius='15px' fontSize='1vw'><SearchIcon /></Button>}
+                children={<Button onClick={handleClick} w ='100%' borderRadius='15px' fontSize='1em' justifyContent='center'><SearchIcon/></Button>}
             />
             <Input 
                 w ='100%'  placeholder='Search a recipe' borderRadius='15px' pr='50px' value = {searchbar} 
